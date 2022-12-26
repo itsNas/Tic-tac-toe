@@ -13,8 +13,8 @@ html {
 }
 
 body {
-    background-color: #014D64;
-    color: #BEDB37;
+    background-color: #014d64;
+    color: #bedb37;
     font-family: Varela Round, sans-serif;
     line-height: 1.6;
     margin-bottom: 80px;
@@ -44,6 +44,10 @@ button {
 }
 
 .main {
+    padding: 0 20px;
+}
+
+.message {
     padding: 20px 0;
     font-size: 50px;
     text-align: center;
@@ -54,26 +58,46 @@ button {
     grid-template-columns: repeat(3, 1fr);
     width: 454px;
     height: 454px;
-    border: none;
+    border: 2px solid white;
     margin: 0px auto;
 }
 
 .field {
     width: 150px;
     height: 150px;
+    margin: 0;
     border: 3px solid white;
     font-size: 100px;
+    font-weight: bold;
     text-align: center;
     cursor: pointer;
     user-select: none;
 }
 
+.field:hover {
+    background-color: #1b8d8d;
+}
 
+.center {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
 
+.restart {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #bedb37;
+    color: #014d64;
+    font-weight: bold;
+    font-size: 50px;
+}
 
-
-
-
+.restart:hover {
+    background-color: #1b8d8d;
+    color: #bedb37;
+}
 
 .footer {
     position: absolute;
