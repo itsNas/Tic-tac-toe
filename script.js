@@ -55,6 +55,9 @@ const gameBoard = (() => {
 // The displayControl responsible for updating the game display and messages to the user.
 const displayControl = (() => {
     // cache DOM elements
+    const fieldElements = document.querySelectorAll(".field");
+    const messageElements = document.getElementById("message");
+    const restartButton = document.getElementById("restart");
     // event handlers
     // methods
     // return object for display messages
