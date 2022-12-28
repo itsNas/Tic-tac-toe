@@ -23,19 +23,32 @@ const Player = (sign) => {
     };
 };
 
+// The gameBoard function represents an array of 9 empty strings at start
 const gameBoard = (() => {
     const board = ["", "", "", "", "", "", "", "", ""];
 
-    const setField = (index, sign) => {};
+    // This method set value of the field
+    const setField = (index, sign) => {
+        if (index > board.length) return;
+        board[index] = sign
+    };
 
-    const getField = (index) => {};
+    // This method will return the value of the field
+    const getField = (index) => {
+        if (index > board.length) return;
+        return board[index];
+    };
 
-    const reset = () => {};
+    const reset = () => {
+        for (let i = 0; i < board.length; i++) {
+            board[i] = "";
+        }
+    };
 
     return {
         setField,
         getField,
-        reset,
+        reset
     };
 })();
 
