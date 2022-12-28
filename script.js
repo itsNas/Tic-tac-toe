@@ -56,9 +56,17 @@ const gameBoard = (() => {
 const displayControl = (() => {
     // cache DOM elements
     const fieldElements = document.querySelectorAll(".field");
-    const messageElements = document.getElementById("message");
+    const messageElement = document.getElementById("message");
     const restartButton = document.getElementById("restart");
+
     // event handlers
+    fieldElements.addEventListener("click", (e) => {
+
+    })
+
+    restartButton.addEventListener("click", (e) => {
+
+    })
     // methods
     // return object for display messages
 })();
