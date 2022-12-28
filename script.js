@@ -52,6 +52,12 @@ const gameBoard = (() => {
     };
 })();
 
-const displayControl = (() => {})();
+// The displayControl responsible for updating the game display and messages to the user.
+const displayControl = (() => {
+    // cache DOM elements
+    // event handlers
+    // methods
+    // return object for display messages
+})();
 
 const gameControl = (() => {})();
