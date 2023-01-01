@@ -94,6 +94,7 @@ const displayControl = (() => {
         }
     };
 
+    // Change the color of the the text according to the winner's color
     const getColorForWinner = (winner) => {
         if (winner === "O") {
             return "#E23F3F";
@@ -102,6 +103,7 @@ const displayControl = (() => {
         }
     };
 
+    // reset the color of the text to original color
     const resetMessageColor = () => {
         messageElement.style.color = "";
     };
