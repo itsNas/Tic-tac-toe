@@ -76,6 +76,7 @@ const displayControl = (() => {
         updateGameBoard();
         // Set the message element to "Player X's turn"
         setMessageElement("Player X's turn");
+        resetMessageColor();
     });
 
     // Update the game board display by setting the text content of each field element to the corresponding field in the game board
@@ -130,6 +131,7 @@ const displayControl = (() => {
     };
 })();
 
+// Game control module
 const gameControl = (() => {
     // Create player instance
     const playerX = new Player("X");
