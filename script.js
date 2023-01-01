@@ -71,6 +71,7 @@ const displayControl = (() => {
         // Reset the game board and game controller
         gameBoard.reset();
         gameControl.reset();
+        resetMessageColor();
         // Update the game board display
         updateGameBoard();
         // Set the message element to "Player X's turn"
@@ -93,12 +94,25 @@ const displayControl = (() => {
         }
     };
 
+    const getColorForWinner = (winner) => {
+        if (winner === "O") {
+            return "#E23F3F";
+        } else {
+            return "#F5CA14";
+        }
+    }
+
+    const resetMessageColor = () => {
+        messageElement.style.color = "";
+    }
+
     // Set the result message based on the winner
     const setResultMessage = (winner) => {
         if (winner === "Draw") {
             setMessageElement("It's a draw!");
         } else {
             setMessageElement(`Player ${winner} has won!`);
+            messageElement.style.color = getColorForWinner(winner);
         }
     };
 
