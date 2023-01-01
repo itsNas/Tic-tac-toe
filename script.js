@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 
 // Player constructor function
 function Player(sign) {
@@ -11,7 +11,7 @@ function Player(sign) {
     return {
         getSign,
     };
-};
+}
 
 // Game board module
 const gameBoard = (() => {
@@ -21,7 +21,7 @@ const gameBoard = (() => {
     // Set the field at the specified index to the specified sign
     const setField = (index, sign) => {
         if (index > board.length) return;
-        board[index] = sign
+        board[index] = sign;
     };
 
     // Get the field at the specified index
@@ -41,7 +41,7 @@ const gameBoard = (() => {
     return {
         setField,
         getField,
-        reset
+        reset,
     };
 })();
 
@@ -79,6 +79,15 @@ const displayControl = (() => {
     const updateGameBoard = () => {
         for (let i = 0; i < fieldElements.length; i++) {
             fieldElements[i].textContent = gameBoard.getField(i);
+
+            // If the field has the player O's sign, set the color to red
+            if (fieldElements[i].textContent === "O") {
+                fieldElements[i].style.color = "#E23F3F";
+            }
+            // If the field has the player X's sign, set the color to yellow
+            if (fieldElements[i].textContent === "X") {
+                fieldElements[i].style.color = "#F5CA14";
+            }
         }
     };
 
@@ -131,9 +140,7 @@ const gameControl = (() => {
         }
         // If the game is not over, increment the round counter and set the message element to the next player's turn
         round++;
-        displayControl.setMessageElement(
-            `Player ${getCurrentPlayerSign()}'s turn`
-        );
+        displayControl.setMessageElement(`Player ${getCurrentPlayerSign()}'s turn`);
     };
 
     // Get the sign of the current player
@@ -168,7 +175,7 @@ const gameControl = (() => {
 
     // Get the value of the isOver flag
     const getIsOver = () => {
-        return isOver
+        return isOver;
     };
 
     // Reset the isOver flag and counter
