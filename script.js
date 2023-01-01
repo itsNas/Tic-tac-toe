@@ -1,18 +1,8 @@
-// The project will have at least 3 modules which are gameBoard, gameControl, and displayControl.
-
-// create a gameBoard module with 3 methods for setField, getField and reset.
-
-//  setField will have 2 parameters(index, sign) and will set the value of the field. If the index is our of range, it will do nothing.
-
-// getField method will return the value of the field at the given index. If the index is out of range, it will return undefined.
-
-// reset method will reset the board to the initial state with empty strings.
-
-// displayControl method will have click eventListeners for fieldElements and restartButton and 3methods for updateGameBoard, setResultMessage and setResultElement.
-
 "use strict";
 
+// Player constructor function
 const Player = (sign) => {
+    // Define the sign properties for each player instance
     this.sign = sign;
 
     const getSign = () => {
@@ -23,28 +13,31 @@ const Player = (sign) => {
     };
 };
 
-// The gameBoard function represents an array of 9 empty strings at start
+// Game board module
 const gameBoard = (() => {
+    // Array representing the game board
     const board = ["", "", "", "", "", "", "", "", ""];
 
-    // This method set value of the field
+    // Set the field at the specified index to the specified sign
     const setField = (index, sign) => {
         if (index > board.length) return;
         board[index] = sign
     };
 
-    // This method will return the value of the field
+    // Get the field at the specified index
     const getField = (index) => {
         if (index > board.length) return;
         return board[index];
     };
 
+    // Reset the game board by setting all the fields to an empty string
     const reset = () => {
         for (let i = 0; i < board.length; i++) {
             board[i] = "";
         }
     };
 
+    // Return an object with setField, getField and reset methods
     return {
         setField,
         getField,
@@ -52,23 +45,61 @@ const gameBoard = (() => {
     };
 })();
 
-// The displayControl responsible for updating the game display and messages to the user.
+// Display control module
 const displayControl = (() => {
-    // cache DOM elements
+    // Get the DOM elements for the game board fields, message element and restart button
     const fieldElements = document.querySelectorAll(".field");
     const messageElement = document.getElementById("message");
     const restartButton = document.getElementById("restart");
 
-    // event handlers
-    fieldElements.addEventListener("click", (e) => {
+    fieldElements.forEach((field) =>
+        field.addEventListener("click", (e) => {
+            // If the game is over or the field is already taken, do nothing
+            if (gameController.getIsOver() || e.target.textContent !== "") return;
+            // Play the round with the field index
+            gameController.playRound(parseInt(e.target.dataset.index));
+            // Update the game board display
+            updateGameBoard();
+        })
+    );
 
-    })
-
+    // Add an event listener to the restart button
     restartButton.addEventListener("click", (e) => {
+        // Reset the game board and game controller
+        gameBoard.reset();
+        gameController.reset();
+        // Update the game board display
+        updateGameBoard();
+        // Set the message element to "Player X's turn"
+        setMessageElement("Player X's turn");
+    });
 
-    })
-    // methods
-    // return object for display messages
+    // Update the game board display by setting the text content of each field element to the corresponding field in the game board
+    const updateGameBoard = () => {
+        for (let i = 0; i < fieldElements.length; i++) {
+            fieldElements[i].textContent = gameBoard.getField(i);
+        }
+    };
+
+    // Set the result message based on the winner
+    const setResultMessage = (winner) => {
+        if (winner === "Draw") {
+            setMessageElement("It's a draw!");
+        } else {
+            setMessageElement(`Player ${winner} has won!`);
+        }
+    };
+
+    // Set the text content of the message element
+    const setMessageElement = (message) => {
+        messageElement.textContent = message;
+    };
+
+    // Return an object with setResultMessage and setMessageElement methods
+    return {
+        setResultMessage,
+        setMessageElement,
+    };
 })();
 
 const gameControl = (() => {})();
