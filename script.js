@@ -1,7 +1,7 @@
-"use strict";
+// "use strict";
 
 // Player constructor function
-const Player = (sign) => {
+function Player(sign) {
     // Define the sign properties for each player instance
     this.sign = sign;
 
@@ -52,12 +52,13 @@ const displayControl = (() => {
     const messageElement = document.getElementById("message");
     const restartButton = document.getElementById("restart");
 
+    // Add event listeners to the game board fields
     fieldElements.forEach((field) =>
         field.addEventListener("click", (e) => {
             // If the game is over or the field is already taken, do nothing
-            if (gameController.getIsOver() || e.target.textContent !== "") return;
+            if (gameControl.getIsOver() || e.target.textContent !== "") return;
             // Play the round with the field index
-            gameController.playRound(parseInt(e.target.dataset.index));
+            gameControl.playRound(parseInt(e.target.dataset.index));
             // Update the game board display
             updateGameBoard();
         })
@@ -67,7 +68,7 @@ const displayControl = (() => {
     restartButton.addEventListener("click", (e) => {
         // Reset the game board and game controller
         gameBoard.reset();
-        gameController.reset();
+        gameControl.reset();
         // Update the game board display
         updateGameBoard();
         // Set the message element to "Player X's turn"
@@ -102,4 +103,84 @@ const displayControl = (() => {
     };
 })();
 
-const gameControl = (() => {})();
+const gameControl = (() => {
+    // Create player instance
+    const playerX = new Player("X");
+    const playerO = new Player("O");
+
+    // Initialize the round counter and isOver flag
+    let round = 1;
+    let isOver = false;
+
+    // Play the round with specified field index
+    const playRound = (fieldIndex) => {
+        // Set the field at the specified index to the current player's sign
+        gameBoard.setField(fieldIndex, getCurrentPlayerSign());
+        // Check if the current player has won
+        if (checkWinner(fieldIndex)) {
+            // If the current player has won, set the result message and set the isOver flag to true
+            displayControl.setResultMessage(getCurrentPlayerSign());
+            isOver = true;
+            return;
+        }
+        // If all rounds have been played and no winner has been found, set the result message to "Draw"
+        if (round === 9) {
+            displayControl.setResultMessage("Draw");
+            isOver = true;
+            return;
+        }
+        // If the game is not over, increment the round counter and set the message element to the next player's turn
+        round++;
+        displayControl.setMessageElement(
+            `Player ${getCurrentPlayerSign()}'s turn`
+        );
+    };
+
+    // Get the sign of the current player
+    const getCurrentPlayerSign = () => {
+        return round % 2 === 1 ? playerX.getSign() : playerO.getSign();
+    };
+
+    // Check if the current player has won with specified field index
+    const checkWinner = (fieldIndex) => {
+        // Array of win conditions
+        const winConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+
+        // Filter the win conditions array to include only those that include the specified field index
+        // Check if any of the filtered combinations meet the win condition (all fields are occupied by the current player's sign)
+        return winConditions
+            .filter((combination) => combination.includes(fieldIndex))
+            .some((possibleCombination) =>
+                possibleCombination.every(
+                    (index) => gameBoard.getField(index) === getCurrentPlayerSign()
+                )
+            );
+    };
+
+    // Get the value of the isOver flag
+    const getIsOver = () => {
+        return isOver
+    };
+
+    // Reset the isOver flag and counter
+    const reset = () => {
+        round = 1;
+        isOver = false;
+    };
+
+    // Return an object with playRound, getIsOver, and reset methods
+    return {
+        playRound,
+        getIsOver,
+        reset,
+    };
+})();
