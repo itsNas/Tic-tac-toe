@@ -100,11 +100,11 @@ const displayControl = (() => {
         } else {
             return "#F5CA14";
         }
-    }
+    };
 
     const resetMessageColor = () => {
         messageElement.style.color = "";
-    }
+    };
 
     // Set the result message based on the winner
     const setResultMessage = (winner) => {
