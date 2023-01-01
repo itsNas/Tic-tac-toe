@@ -1,16 +1,18 @@
 "use strict";
 
 // Player constructor function
-function Player(sign) {
-    // Define the sign properties for each player instance
-    this.sign = sign;
+class Player {
+    constructor(sign) {
+        // Define the sign properties for each player instance
+        this.sign = sign;
 
-    const getSign = () => {
-        return sign;
-    };
-    return {
-        getSign,
-    };
+        const getSign = () => {
+            return sign;
+        };
+        return {
+            getSign,
+        };
+    }
 }
 
 // Game board module
