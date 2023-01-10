@@ -1,113 +1,113 @@
 *,
 *::after,
 *::before {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html {
-    /* footer support */
-    position: relative;
-    min-height: 100%;
+  /* footer support */
+  position: relative;
+  min-height: 100%;
 }
 
 body {
-    background-color: #014d64;
-    color: #bedb37;
-    font-family: Varela Round, sans-serif;
-    line-height: 1.6;
-    margin-bottom: 80px;
+  background-color: #014d64;
+  color: #bedb37;
+  font-family: Varela Round, sans-serif;
+  line-height: 1.6;
+  margin-bottom: 80px;
 }
 
 h1 {
-    line-height: 1.2;
+  line-height: 1.2;
 }
 
 button {
-    border: none;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: pointer;
-    outline: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
 }
 
 /* Header */
 .header {
-    padding: 20px;
+  padding: 20px;
 }
 
 .title {
-    font-size: 100px;
-    text-align: center;
+  font-size: 100px;
+  text-align: center;
 }
 
 .main {
-    padding: 0 20px;
+  padding: 0 20px;
 }
 
 .message {
-    padding: 20px 0;
-    font-size: 50px;
-    text-align: center;
+  padding: 20px 0;
+  font-size: 50px;
+  text-align: center;
 }
 
 .gameboard {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 454px;
-    height: 454px;
-    border: 2px solid white;
-    margin: 0px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 454px;
+  height: 454px;
+  border: 2px solid white;
+  margin: 0px auto;
 }
 
 .field {
-    width: 150px;
-    height: 150px;
-    margin: 0;
-    border: 3px solid white;
-    font-size: 100px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
+  width: 150px;
+  height: 150px;
+  margin: 0;
+  border: 3px solid white;
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 .field:hover {
-    background-color: #1b8d8d;
+  background-color: #1b8d8d;
 }
 
 .center {
-    display: flex;
-    justify-content: center;
-    padding: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
 }
 
 .restart {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    background-color: #bedb37;
-    color: #014d64;
-    font-weight: bold;
-    font-size: 50px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #bedb37;
+  color: #014d64;
+  font-weight: bold;
+  font-size: 50px;
 }
 
 .restart:hover {
-    background-color: #1b8d8d;
-    color: #bedb37;
+  background-color: #1b8d8d;
+  color: #bedb37;
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 10px;
-    font-size: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
 }
